@@ -1,0 +1,77 @@
+<html lang="en">
+  <head>
+    <style>
+      
+      body {background-color: #49A0D5;}
+      h1   {color: blue;}
+      p    {color: red;}
+      .button {
+      background-color: #000000; /* Green */
+      border: none;
+      color: white;
+      padding: 10px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .encrypt-button {width: 10%;}
+
+    .label-class{
+      font-size: 24px;
+    }
+
+    .my-string-text-box {
+      height: 40px;
+      font-size: 20px;
+      padding: 5px;
+      border-radius: 10px;
+      border-radius: 5px;
+    }
+
+    .right-labels
+    {      
+      font-size: 24px;
+    }
+
+
+    </style>
+
+    <meta charset="UTF-8">
+    <title>CryptoJS Encryption</title>
+    <script>
+      var encrypted , decrypted , password;
+      function encrypt(){
+        var myPassword = document.getElementById("myPassword").value;
+        myString =  document.getElementById("myString").value;
+        var encrypted = CryptoJS.AES.encrypt(myString, myPassword);
+        document.getElementById("encryptedString").innerHTML = encrypted;
+        var decrypted = CryptoJS.AES.decrypt(encrypted, myPassword);
+        document.getElementById("decryptedString").innerHTML = decrypted;
+        document.getElementById("stringAfterDecryption").innerHTML = decrypted.toString(CryptoJS.enc.Utf8);
+      }
+
+    </script>
+  </head>
+  <body translate="no">
+    <title>CryptoJS Encryption</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <input class="my-string-text-box" placeholder="Message" type="text" id="myString" name="myString">
+    <input class="my-string-text-box" type="text" placeholder="Password" id="myPassword" name="myPassword">
+    <input class="button encrypt-button" type="button" value="Encrypt" onclick="encrypt()">
+    <br><br>
+    <strong><label class="label-class">Encrypted:</label></strong>
+    <span class="right-labels" id="encryptedString"></span>
+    <br>
+    <br>
+    <strong><label class="label-class">Decrypted:</label></strong>
+    <span class="right-labels" id="decryptedString"></span>
+    <br>
+    <br>
+    <strong><label class="label-class">String after Decryption:</label></strong>
+    <span class="right-labels" id="stringAfterDecryption"></span>
+  </body>
+</html>
